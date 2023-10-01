@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Contact</title>
+</head>
+
+<body>
+    <section>
+        <div class="card ml-3 mr-3" th:if="${contact}">
+            <div class="card-body">
+                <div class="container text-center">
+
+
+                    <img style="height: 200px; width: 200px; border-radius: 50%;
+                    border: 3px solid black;" src="" th:src="@{'/img/'+${contact.image}}" alt="profile picture">
+
+
+                    <h3 class="mt-3"><span th:text="${contact.name}"></span> <span
+                            th:text="'('+${contact.secondName}+')'"></span>
+                    </h3>
+
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#ID</th>
+                                <th scope="col" th:text="'SCM2023'+${contact.cid}"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td th:text="${contact.email}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Phone no.</th>
+                                <td th:text="${contact.phone}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Work</th>
+                                <td th:text="${contact.work}"></td>
+                            </tr>
+                        </tbody>
+
+
+                    </table>
+                    <div class="description">
+                        <div th:utext="${contact.description}"></div>
+                    </div>
+
+                    <div class="container mt-3">
+                        <a th:onclick="deleteContact([[${contact.cid}]])"> <button
+                                class="btn btn-danger btn-sm btn-block">Delete</button></a>
+                        <button class="btn btn-primary btn-sm btn-block mt-2">Update</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3 bg-danger" th:unless="${contact}">
+            <h1>you dont have the rights to view this contact </h1>
+        </div>
+
+    </section>
+</body>
+
+</html>
